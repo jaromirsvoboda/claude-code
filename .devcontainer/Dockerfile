@@ -25,6 +25,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   jq \
   nano \
   vim \
+  # Python toolchain
+  python3 \
+  python3-pip \
+  python3-venv \
+  python3-dev \
+  python-is-python3 \
+  build-essential \
+  libssl-dev \
+  libffi-dev \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Ensure default node user has access to /usr/local/share
@@ -67,6 +76,11 @@ ENV SHELL=/bin/zsh
 # Set the default editor and visual
 ENV EDITOR=nano
 ENV VISUAL=nano
+
+# Python environment conveniences
+ENV PIP_NO_CACHE_DIR=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+ENV PATH="/home/node/.local/bin:$PATH"
 
 # Default powerline10k theme
 ARG ZSH_IN_DOCKER_VERSION=1.2.0

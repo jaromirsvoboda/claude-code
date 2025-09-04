@@ -16,7 +16,10 @@
         "anthropic.claude-code",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "eamodio.gitlens"
+  "eamodio.gitlens",
+  "ms-python.python",
+  "ms-python.vscode-pylance",
+  "ms-toolsai.jupyter"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -24,6 +27,16 @@
         "editor.codeActionsOnSave": {
           "source.fixAll.eslint": "explicit"
         },
+  "python.defaultInterpreterPath": "/workspace/.linux-venv/bin/python",
+  "python.terminal.activateEnvironment": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
         "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.profiles.linux": {
           "bash": {
@@ -51,6 +64,7 @@
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
+  "postCreateCommand": "bash -lc 'if [ ! -d .linux-venv ]; then python3 -m venv .linux-venv; fi; . .linux-venv/bin/activate; pip install --upgrade pip setuptools wheel; if [ -f requirements.txt ]; then pip install -r requirements.txt; fi'",
   "postStartCommand": "sudo /usr/local/bin/init-firewall.sh",
   "waitFor": "postStartCommand"
 }
